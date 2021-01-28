@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { User } = require('../config/db.config');
 const db = require('../config/db.config');
 
 const Client=db.Client;
@@ -10,12 +11,13 @@ const auth = async (req, res, next) => {
         const token = req.header('Authorization').replace('Bearer ', '')
         const decoded = jwt.verify(token, 'juanchoNoSabeNode')
         console.log("ESTE ES EL EMAIL DEL TOKEN",decoded);
-        let user= await Client.findByPk(decoded.email);
-        console.log("ESTE ES EL CLIENTE",cliente.dataValues);
+        let user= await User.findByPk(decoded.email);
+        console.log("ESTE ES EL CLIENTE",user.dataValues);
         req.user = user
         req.token = token
         next()
     } catch (e) {
+        console.log("ERROR EN AUTH",e)
         res.status(401).send({ error: 'Please authenticate.' })
     }
 }

@@ -5,7 +5,7 @@ const chalk = require('chalk');
 
 const log = console.log;
 
-const User = db.User;
+const Product = db.Product;
 
 const generateAuthToken=async function(user){
     
@@ -45,108 +45,107 @@ const findByCredentials=async function(req){
 
 
 exports.create = async (req, res) => {
-    let user = {};
+    let product = {};
 
     try{
         // Building Client object from upoading request's body
-        user.address = req.body.address;
-        user.email = req.body.email;
-        user.name = req.body.name;
-        user.password = req.body.password;
-        user.phone=req.body.phone;
-        const token= await generateAuthToken(user);
-        user.tokens= [token];
+        product.name = req.body.address;
+        product.price = req.body.email;
+        product.category = req.body.name;
+        product.paymentInfo = req.body.password;
+        product.deliveryInfo=req.body.phone;
+        product.userEmail= req.user.email;
 
-        userCreated= await User.create(user);
+        productCreated= await Product.create(product);
         log(chalk.bold.black.bgGreen("SE CREO EL USUARIO DE MANERA EXITOSA"));
         res.status(200).json({
             message: "Upload Successfully a Client with id = ",
-            user: userCreated,
-            token:token
+            product: productCreated,
+
         });
     }catch(error){
         res.status(500).json({
             message: "Fail!",
             error: error.message
         });
-        log(chalk.bold.bgRed("NO SE PUDO CREAR EL USUARIO"));
+        log(chalk.bold.bgRed("NO SE PUDO CREAR EL PRODUCTO"));
     }
 }
 
 
 
 
-exports.login = async (req, res) => {
+// exports.login = async (req, res) => {
     
 
-    try{
-        let user= await findByCredentials(req);
+//     try{
+//         let user= await findByCredentials(req);
         
-        if(!user){
-            log(chalk.bold.bgRed("FALLO EL INTENTO DE LOGIN"));
-            res.status(400).json({
-                error: "FALLO CON LA AUTENTICACION",
-            });
-        }
-        else{
-            log(chalk.bold.black.bgYellow("SE HIZO LOGIN POR PARTE DEL USUARIO",user[0].dataValues.email));
-            res.status(200).json({
-                token:user[0].dataValues.tokens[0]
-            });
-        }
-    }catch(error){
-        res.status(500).json({
-            message: "Fail!",
-            error: error.message
-        });
-        log(chalk.bold.bgRed("NO SE PUDO REALIZAR EL LOGIN SOLCITADO"));
-    }
-}
+//         if(!user){
+//             log(chalk.bold.bgRed("FALLO EL INTENTO DE LOGIN"));
+//             res.status(400).json({
+//                 error: "FALLO CON LA AUTENTICACION",
+//             });
+//         }
+//         else{
+//             log(chalk.bold.black.bgYellow("SE HIZO LOGIN POR PARTE DEL USUARIO",user[0].dataValues.email));
+//             res.status(200).json({
+//                 token:user[0].dataValues.tokens[0]
+//             });
+//         }
+//     }catch(error){
+//         res.status(500).json({
+//             message: "Fail!",
+//             error: error.message
+//         });
+//         log(chalk.bold.bgRed("NO SE PUDO REALIZAR EL LOGIN SOLCITADO"));
+//     }
+// }
 
 
 
 
-exports.retrieveAllClients = (req, res) => {
-    // find all Customer information from 
-    Client.findAll()
-        .then(customerInfos => {
-            res.status(200).json({
-                message: "Get all Clients' Infos Successfully!",
-                clients: customerInfos
-            });
-        })
-        . catch(error => {
-          // log on console
-          console.log(error);
+// exports.retrieveAllClients = (req, res) => {
+//     // find all Customer information from 
+//     Client.findAll()
+//         .then(customerInfos => {
+//             res.status(200).json({
+//                 message: "Get all Clients' Infos Successfully!",
+//                 clients: customerInfos
+//             });
+//         })
+//         . catch(error => {
+//           // log on console
+//           console.log(error);
 
-          res.status(500).json({
-              message: "Error!",
-              error: error
-          });
-        });
-}
+//           res.status(500).json({
+//               message: "Error!",
+//               error: error
+//           });
+//         });
+// }
 
-exports.getClientById = (req, res) => {
-  // find all Customer information from 
-  let customerId = req.params.id;
+// exports.getClientById = (req, res) => {
+//   // find all Customer information from 
+//   let customerId = req.params.id;
   
-  Client.findByPk(customerId)
-      .then(customer => {
-          res.status(200).json({
-              message: " Successfully Get a Customer with id = " + customerId,
-              clients: customer
-          });
-      })
-      . catch(error => {
-        // log on console
-        console.log(error);
+//   Client.findByPk(customerId)
+//       .then(customer => {
+//           res.status(200).json({
+//               message: " Successfully Get a Customer with id = " + customerId,
+//               clients: customer
+//           });
+//       })
+//       . catch(error => {
+//         // log on console
+//         console.log(error);
 
-        res.status(500).json({
-            message: "Error!",
-            error: error
-        });
-      });
-}
+//         res.status(500).json({
+//             message: "Error!",
+//             error: error
+//         });
+//       });
+// }
 
 
 // exports.filteringByAge = (req, res) => {

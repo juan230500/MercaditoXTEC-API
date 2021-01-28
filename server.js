@@ -17,6 +17,8 @@ db.sequelize.sync({force: false}).then(() => {
 
 let router = require('./app/routers/router.js');
 let userRouter = require('./app/routers/user.router.js');
+let productRouter = require('./app/routers/product.router.js');
+
 
 const cors = require('cors')
 const corsOptions = {
@@ -28,6 +30,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use('/', router);
 app.use('/', userRouter);
+app.use("/",productRouter);
 
 // Create a Server
 const server = app.listen(8080, function () {
