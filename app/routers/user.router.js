@@ -9,7 +9,8 @@ let router = express.Router();
  
 const user = require('../controllers/users.controller.js');
 
-router.post('/api/users/create', user.create);
+router.post('/users/signup', user.create);
+router.post('/users/login', user.login);
 // router.get('/api/users/all',auth, user.retrieveAllClients);
 router.get('/api/users/onebyid/:id',auth, user.getClientById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);

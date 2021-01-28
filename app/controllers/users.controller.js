@@ -16,6 +16,33 @@ const generateAuthToken=async function(user){
     return token
 }
 
+const findByCredentials=async function(req){
+    
+    // log(chalk.bgBlue(req))
+
+    try{
+        let user= await User.findAll(
+            {
+                where:{
+                    password:req.body.password,
+                    email:req.body.email
+                }
+            }
+        );
+
+        
+    
+        return user;
+    }
+    catch(e){
+        return 
+    }
+
+    
+    
+}
+
+
 
 exports.create = async (req, res) => {
     let user = {};
@@ -45,6 +72,41 @@ exports.create = async (req, res) => {
         log(chalk.bold.bgRed("NO SE PUDO CREAR EL USUARIO"));
     }
 }
+
+
+
+
+exports.login = async (req, res) => {
+    
+
+    try{
+        let user= await findByCredentials(req);
+        
+        if(!user){
+            log(chalk.bold.bgRed("FALLO EL INTENTO DE LOGIN"));
+            res.status(400).json({
+                error: "FALLO CON LA AUTENTICACION",
+                // user: userCreated,
+                // token:token
+            });
+        }
+        else{
+            log(chalk.bold.black.bgYellow("SE HIZO LOGIN POR PARTE DEL USUARIO",user[0].dataValues.email));
+            res.status(200).json({
+                token:user[0].dataValues.tokens[0]
+            });
+        }
+    }catch(error){
+        res.status(500).json({
+            message: "Fail!",
+            error: error.message
+        });
+        log(chalk.bold.bgRed("NO SE PUDO REALIZAR EL LOGIN SOLCITADO"));
+    }
+}
+
+
+
 
 exports.retrieveAllClients = (req, res) => {
     // find all Customer information from 
