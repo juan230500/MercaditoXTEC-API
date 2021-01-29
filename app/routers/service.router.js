@@ -13,7 +13,7 @@ router.post('/service',auth, service.create);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
 // router.get('/api/customers/pagefiltersort', customers.pagingfilteringsorting);
-// router.put('/api/customers/update/:id', customers.updateById);
+router.put('/service/:id', service.updateById);
 // router.delete('/api/customers/delete/:id', customers.deleteById);
 
 module.exports = router;

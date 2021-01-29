@@ -60,3 +60,43 @@ exports.retrieveAllServices =  async (req, res) => {
     }
 }
 
+
+
+exports.updateById = async (req, res) => {
+    try{
+        let serviceId = req.params.id;
+        let service = await Service.findByPk(serviceId);
+    
+        if(!service){
+            // return a response to client
+            res.status(404).json({
+                message: "Not Found for updating a Service with id = " + serviceId,
+                service: "",
+                error: "404"
+            });
+        } else {    
+           
+            let result = await Service.update(req.body, {returning: true, where: {id: serviceId}});
+            
+            // return the response to client
+            if(!result) {
+                res.status(500).json({
+                    message: "Error -> Can not update a SERVICE with id = " + req.params.id,
+                    error: "Can NOT Updated",
+                });
+            }
+
+            res.status(200).json({
+                message: "Update successfully a SERVICE with id = " + req.params.id,
+                service: result,
+            });
+        }
+    } catch(error){
+        res.status(500).json({
+            message: "Error -> Can not update a SERVICE with id = " + req.params.id,
+            error: error.message
+        });
+    }
+}
+
+

@@ -27,6 +27,10 @@ module.exports = (sequelize, Sequelize) => {
         name: {
             type: Sequelize.STRING
         },
+        eval: {
+            type: Sequelize.INTEGER,
+            defaultValue: '0'
+        },
         data: {
             type: Sequelize.BLOB('long')
         },

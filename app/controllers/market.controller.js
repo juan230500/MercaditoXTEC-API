@@ -81,10 +81,12 @@ exports.listAllMarket = async (req, res) => {
 
         for (let i = 0; i < files.length; i++) {
             fileInfo.push({
+                id:files[i].id,
                 name: files[i].name,
                 curse: files[i].curse,
                 price:files[i].price,
                 topics:files[i].topics,
+                eval:files[i].eval,
                 type:"practice"
             })
         }
