@@ -20,6 +20,7 @@ let ServiceRouter = require('./app/routers/service.router.js');
 let TutorialRouter = require('./app/routers/tutorial.router.js');
 let FileRouter = require('./app/routers/file.router.js');
 let PracticeRouter = require('./app/routers/practice.router.js');
+let MarketRouter = require('./app/routers/market.router.js');
 
 
 
@@ -42,6 +43,8 @@ app.use("/",ServiceRouter);
 app.use("/",TutorialRouter);
 app.use("/",FileRouter);
 app.use("/",PracticeRouter);
+app.use("/",MarketRouter);
+
 
 
 

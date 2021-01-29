@@ -12,9 +12,6 @@ module.exports = (sequelize, Sequelize) => {
         schedule: {
             type: Sequelize.STRING
         },
-        score: {
-            type: Sequelize.STRING
-        },
         topics: {
             type: Sequelize.STRING
         },

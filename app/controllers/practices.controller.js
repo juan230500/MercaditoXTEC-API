@@ -7,7 +7,7 @@ const log = console.log;
 
 const Practice = db.Practice;
 
-const User= db.User;
+const User = db.User;
 
 
 
@@ -15,20 +15,20 @@ const auth = async (req) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '')
         const decoded = jwt.verify(token, 'juanchoNoSabeNode')
-        let user= await User.findByPk(decoded.email);
+        let user = await User.findByPk(decoded.email);
         return user;
-        
+
     } catch (e) {
-        console.log("ERROR EN AUTH",e)
-       
-        return 
+        console.log("ERROR EN AUTH", e)
+
+        return
     }
 }
 
 
 exports.create = async (req, res) => {
     try {
-        let user= await auth(req);
+        let user = await auth(req);
         // if()
         console.log("ESTE ES EL REQUEST", req.body.tutor)
         console.log("TYPE", typeof (req.tutor))
@@ -40,13 +40,13 @@ exports.create = async (req, res) => {
             paymentInfo: req.body.paymentInfo,
             price: req.body.price,
             topics: req.body.topics,
-            userEmail:user.email
+            userEmail: user.email
         });
         log(chalk.bold.black.bgGreen("SE CREO LA PRACTICA DE MANERA EXITOSA"));
         res.status(200).json({
             message: "SE CREO LA PRACTICA DE MANERA EXITOSA",
             Practice: req.file.originalname,
-            downloadUrl: "/api/file/" + practiceCreated.dataValues.id,
+            downloadUrl: "/file/" + practiceCreated.dataValues.id,
 
         });
     } catch (e) {
@@ -62,67 +62,38 @@ exports.create = async (req, res) => {
 
 }
 
-exports.uploadMultipleFiles = async (req, res) => {
-    const messages = [];
 
-    for (const file of req.files) {
-        const uploadfile = await File.create({
-            type: file.mimetype,
-            name: file.originalname,
-            data: file.buffer
+
+exports.listAllPractices = async (req, res) => {
+    try {
+        const files = await Practice.findAll({
+            attributes: ['id', 'name']
         });
+        const fileInfo = [];
 
-        // It will now wait for above Promise to be fulfilled and show the proper details
-        console.log(uploadfile);
+        console.log(files);
 
-        if (!uploadfile) {
-            const result = {
-                status: "fail",
-                filename: file.originalname,
-                message: "Can NOT upload Successfully",
-            }
-
-            messages.push(result);
-        } else {
-            const result = {
-                status: "ok",
-                filename: file.originalname,
-                message: "Upload Successfully!",
-                downloadUrl: "http://localhost:8080/api/file/" + uploadfile.dataValues.id,
-            }
-
-            messages.push(result);
+        for (let i = 0; i < files.length; i++) {
+            fileInfo.push({
+                filename: files[i].name,
+                url: "/file/" + files[i].dataValues.id
+            })
         }
+        log(chalk.bold.black.bgGreen("SE PUDO LISTAR TODAS LAS PRACTICAS"));
+
+        res.json(fileInfo);
+
+    } catch (err) {
+        log(chalk.bold.bgRed("NO SE PUDO LISTAR TODAS LAS PRACTICAS"));
+        console.log("ERROR", e)
+        res.json({
+            msg: 'Error',
+            detail: err
+        });
     }
 
-    return res.json(messages);
+
 }
-
-// exports.listAllFiles = (req, res) => {
-//     File.findAll({
-//         attributes: ['id', 'name']
-//     }).then(files => {
-
-//         const fileInfo = [];
-
-//         console.log(files);
-
-//         for (let i = 0; i < files.length; i++) {
-//             fileInfo.push({
-//                 filename: files[i].name,
-//                 url: "http://localhost:8080/api/file/" + files[i].dataValues.id
-//             })
-//         }
-
-//         res.json(fileInfo);
-//     }).catch(err => {
-//         console.log(err);
-//         res.json({
-//             msg: 'Error',
-//             detail: err
-//         });
-//     });
-// }
 
 exports.downloadFile = (req, res) => {
     Practice.findByPk(req.params.id).then(file => {
