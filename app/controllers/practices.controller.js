@@ -46,6 +46,7 @@ exports.create = async (req, res) => {
         res.status(200).json({
             message: "SE CREO LA PRACTICA DE MANERA EXITOSA",
             Practice: req.file.originalname,
+            id:practiceCreated.dataValues.id,
             downloadUrl: "/file/" + practiceCreated.dataValues.id,
 
         });
@@ -112,4 +113,60 @@ exports.downloadFile = (req, res) => {
             detail: err
         });
     });
+}
+
+
+exports.updateById = async (req, res) => {
+    try {
+        let practiceId = req.params.id;
+        let practice = await Practice.findByPk(practiceId);
+
+        if (!practice) {
+            // return a response to client
+            res.status(404).json({
+                message: "Not Found for updating a PRACTICE with id = " + practiceId,
+                customer: "",
+                error: "404"
+            });
+        } else {
+            // update new change to database
+            let updatedObject = {
+                type: practice.type,
+                name: practice.name,
+                data: practice.data,
+                curse: practice.curse,
+                paymentInfo: practice.paymentInfo,
+                price: practice.price,
+                topics: practice.topics,
+                userEmail: practice.userEmail,
+                typeSolution: req.file.mimetype,
+                nameSolution: req.file.originalname,
+                dataSolution: req.file.buffer,
+
+            }
+            let result = await Practice.update(updatedObject, {
+                returning: true,
+                where: {
+                    id: practiceId
+                }
+            });
+
+            // return the response to client
+            if (!result) {
+                res.status(500).json({
+                    message: "Error -> Can not update the practice with id = " + req.params.id,
+                    error: "Can NOT Updated",
+                });
+            }
+
+            res.status(200).json({
+                message: "Update successfully the practice with id = " + req.params.id
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: "Error -> Can not update a customer with id = " + req.params.id,
+            error: error.message
+        });
+    }
 }

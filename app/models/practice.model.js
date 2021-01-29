@@ -29,6 +29,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         data: {
             type: Sequelize.BLOB('long')
+        },
+        typeSolution: {
+            type: Sequelize.STRING
+        },
+        nameSolution: {
+            type: Sequelize.STRING
+        },
+        dataSolution: {
+            type: Sequelize.BLOB('long')
         }
     });
 

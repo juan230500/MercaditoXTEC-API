@@ -36,8 +36,9 @@ exports.uploadFile = (req, res) => {
 
 exports.uploadMultipleFiles = async (req, res) => {
 	const messages = [];
+	const files=[req.file1,req.file2];
 
-	for (const file of req.files) {
+	for (const file of files) {
 		const uploadfile = await File.create({
 			type: file.mimetype,
 			name: file.originalname,

@@ -7,6 +7,7 @@ let router = express.Router();
 const product = require('../controllers/products.controller.js');
 
 router.post('/product',auth, product.create);
+router.put('/product/:id',auth, product.updateById);
 // router.post('/product/login',auth, user.login);
 // router.get('/product',auth, product.retrieveProducts);
 // router.get('/product/:id',auth, user.getClientById);

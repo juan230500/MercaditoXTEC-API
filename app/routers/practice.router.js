@@ -7,6 +7,7 @@ const practice = require('../controllers/practices.controller.js');
 
 
 router.post('/practice', upload.single("file"), practice.create);
+router.post('/practice/:id', upload.single("file"), practice.updateById);
 
 router.get('/practice', practice.listAllPractices);
 

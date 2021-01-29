@@ -57,7 +57,7 @@ exports.create = async (req, res) => {
         product.userEmail= req.user.email;
         product.description=req.bodydescription;
         productCreated= await Product.create(product);
-        log(chalk.bold.black.bgGreen("SE CREO EL USUARIO DE MANERA EXITOSA"));
+        log(chalk.bold.black.bgGreen("SE CREO EL PRODUCTO DE MANERA EXITOSA"));
         res.status(200).json({
             message: "Upload Successfully a Client with id = ",
             product: productCreated,
@@ -221,48 +221,48 @@ exports.create = async (req, res) => {
 //   }      
 // }
 
-// exports.updateById = async (req, res) => {
-//     try{
-//         let customerId = req.params.id;
-//         let customer = await Customer.findByPk(customerId);
+exports.updateById = async (req, res) => {
+    try{
+        let productId = req.params.id;
+        let product = await Product.findByPk(productId);
     
-//         if(!customer){
-//             // return a response to client
-//             res.status(404).json({
-//                 message: "Not Found for updating a customer with id = " + customerId,
-//                 customer: "",
-//                 error: "404"
-//             });
-//         } else {    
-//             // update new change to database
-//             let updatedObject = {
-//                 firstname: req.body.firstname,
-//                 lastname: req.body.lastname,
-//                 address: req.body.address,
-//                 age: req.body.age
-//             }
-//             let result = await Customer.update(updatedObject, {returning: true, where: {id: customerId}});
+        if(!product){
+            // return a response to client
+            res.status(404).json({
+                message: "Not Found for updating a Product with id = " + productId,
+                customer: "",
+                error: "404"
+            });
+        } else {    
+            // // update new change to database
+            // let updatedObject = {
+            //     firstname: req.body.firstname,
+            //     lastname: req.body.lastname,
+            //     address: req.body.address,
+            //     age: req.body.age
+            // }
+            let result = await Product.update(req.body, {returning: true, where: {id: productId}});
             
-//             // return the response to client
-//             if(!result) {
-//                 res.status(500).json({
-//                     message: "Error -> Can not update a customer with id = " + req.params.id,
-//                     error: "Can NOT Updated",
-//                 });
-//             }
+            // return the response to client
+            if(!result) {
+                res.status(500).json({
+                    message: "Error -> Can not update a PRODUCT with id = " + req.params.id,
+                    error: "Can NOT Updated",
+                });
+            }
 
-//             res.status(200).json({
-//                 message: "Update successfully a Customer with id = " + customerId,
-//                 customer: updatedObject,
-//             });
-//         }
-//     } catch(error){
-//         res.status(500).json({
-//             message: "Error -> Can not update a customer with id = " + req.params.id,
-//             error: error.message
-//         });
-//     }
-// }
+            res.status(200).json({
+                message: "Update successfully a Product with id = " + productId,
+                product: result,
+            });
+        }
+    } catch(error){
+        res.status(500).json({
+            message: "Error -> Can not update a Product with id = " + req.params.id,
+            error: error.message
+        });
+    }
+}
 
 // exports.deleteById = async (req, res) => {
 //     try{
