@@ -10,7 +10,7 @@ router.post('/product',auth, product.create);
 router.put('/product/:id',auth, product.updateById);
 // router.post('/product/login',auth, user.login);
 // router.get('/product',auth, product.retrieveProducts);
-// router.get('/product/:id',auth, user.getClientById);
+router.get('/product/:id',auth, product.getProductById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
 // router.get('/api/customers/pagefiltersort', customers.pagingfilteringsorting);

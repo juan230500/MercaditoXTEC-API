@@ -61,6 +61,20 @@ exports.retrieveAllServices =  async (req, res) => {
 }
 
 
+exports.getServiceById = async (req, res) => {
+    // find all Customer information from 
+    
+    try{
+      let serviceId = req.params.id;
+        const service= await Service.findByPk(serviceId);
+        console.log("EST ES EL SERVICIO",service)
+        res.status(200).json(service);
+    }catch(e){
+      res.status(500).json({error:e});
+    }
+  }
+
+
 
 exports.updateById = async (req, res) => {
     try{

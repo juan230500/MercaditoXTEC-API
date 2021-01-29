@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
         res.status(200).json({
             message: "SE CREO LA PRACTICA DE MANERA EXITOSA",
             Practice: req.file.originalname,
-            id:practiceCreated.dataValues.id,
+            id: practiceCreated.dataValues.id,
             downloadUrl: "/file/" + practiceCreated.dataValues.id,
 
         });
@@ -113,6 +113,30 @@ exports.downloadFile = (req, res) => {
             detail: err
         });
     });
+}
+
+
+
+exports.getPracticeById = async (req, res) => {
+    // find all Customer information from 
+
+    try {
+        let practiceId = req.params.id;
+        const practice = await Practice.findByPk(practiceId);
+        let result = {
+            id: practice.id,
+            curse: practice.curse,
+            paymentInfo: practice.paymentInfo,
+            price: practice.price,
+            topics: practice.topics
+        }
+        console.log("EST ES LA PRACTICA", result)
+        res.status(200).json(result);
+    } catch (e) {
+        res.status(500).json({
+            error: e
+        });
+    }
 }
 
 

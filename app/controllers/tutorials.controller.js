@@ -56,3 +56,19 @@ exports.retrieveAllTutorials =  async (req, res) => {
     }
 }
 
+
+
+exports.getTutorialById = async (req, res) => {
+    // find all Customer information from 
+    
+    try{
+      let tutorialId = req.params.id;
+        const tutorial= await Tutorial.findByPk(tutorialId);
+        console.log("EST ES LA TUTORIA",tutorial)
+        res.status(200).json(tutorial);
+    }catch(e){
+      res.status(500).json({error:e});
+    }
+  }
+
+

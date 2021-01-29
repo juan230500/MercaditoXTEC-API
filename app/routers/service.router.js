@@ -9,6 +9,7 @@ const service = require('../controllers/services.controller.js');
 router.post('/service',auth, service.create);
 // router.post('/product/login',auth, user.login);
  router.get('/service',auth, service.retrieveAllServices);
+ router.get('/service/:id',auth, service.getServiceById);
 // router.get('/product/:id',auth, user.getClientById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);

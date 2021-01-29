@@ -99,27 +99,18 @@ exports.create = async (req, res) => {
 //         });
 // }
 
-// exports.getClientById = (req, res) => {
-//   // find all Customer information from 
-//   let customerId = req.params.id;
+exports.getProductById = async (req, res) => {
+  // find all Customer information from 
   
-//   Client.findByPk(customerId)
-//       .then(customer => {
-//           res.status(200).json({
-//               message: " Successfully Get a Customer with id = " + customerId,
-//               clients: customer
-//           });
-//       })
-//       . catch(error => {
-//         // log on console
-//         console.log(error);
-
-//         res.status(500).json({
-//             message: "Error!",
-//             error: error
-//         });
-//       });
-// }
+  try{
+    let productId = req.params.id;
+      const product= await Product.findByPk(productId);
+      console.log("EST ES EL PRODUCTO",product)
+      res.status(200).json(product);
+  }catch(e){
+    res.status(500).json({error:e});
+  }
+}
 
 
 // exports.filteringByAge = (req, res) => {
