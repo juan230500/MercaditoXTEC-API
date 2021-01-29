@@ -28,11 +28,19 @@ db.Customer = require('../models/customer.model.js')(sequelize, Sequelize);
 db.User = require('../models/user.model.js')(sequelize, Sequelize);
 db.Product = require('../models/product.model.js')(sequelize, Sequelize);
 db.Category = require('../models/category.model.js')(sequelize, Sequelize);
+db.Service = require('../models/service.model.js')(sequelize, Sequelize);
 
 
 
-// Relationships
+
+// Relationship User -> Product
 db.User.hasMany(db.Product);
 db.Product.belongsTo(db.User);
  
+
+// Relationship User -> Service
+db.User.hasMany(db.Service);
+db.Service.belongsTo(db.User);
+
+
 module.exports = db;

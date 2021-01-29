@@ -19,6 +19,8 @@ let router = require('./app/routers/router.js');
 let userRouter = require('./app/routers/user.router.js');
 let productRouter = require('./app/routers/product.router.js');
 let categoryRouter = require('./app/routers/category.router.js');
+let ServiceRouter = require('./app/routers/service.router.js');
+
 
 
 
@@ -34,6 +36,7 @@ app.use('/', router);
 app.use('/', userRouter);
 app.use("/",productRouter);
 app.use("/",categoryRouter);
+app.use("/",ServiceRouter);
 
 // Create a Server
 const server = app.listen(8080, function () {
