@@ -76,33 +76,6 @@ exports.create = async (req, res) => {
 
 
 
-// exports.login = async (req, res) => {
-    
-
-//     try{
-//         let user= await findByCredentials(req);
-        
-//         if(!user){
-//             log(chalk.bold.bgRed("FALLO EL INTENTO DE LOGIN"));
-//             res.status(400).json({
-//                 error: "FALLO CON LA AUTENTICACION",
-//             });
-//         }
-//         else{
-//             log(chalk.bold.black.bgYellow("SE HIZO LOGIN POR PARTE DEL USUARIO",user[0].dataValues.email));
-//             res.status(200).json({
-//                 token:user[0].dataValues.tokens[0]
-//             });
-//         }
-//     }catch(error){
-//         res.status(500).json({
-//             message: "Fail!",
-//             error: error.message
-//         });
-//         log(chalk.bold.bgRed("NO SE PUDO REALIZAR EL LOGIN SOLCITADO"));
-//     }
-// }
-
 
 
 

@@ -27,6 +27,8 @@ db.sequelize = sequelize;
 db.Customer = require('../models/customer.model.js')(sequelize, Sequelize);
 db.User = require('../models/user.model.js')(sequelize, Sequelize);
 db.Product = require('../models/product.model.js')(sequelize, Sequelize);
+db.Category = require('../models/category.model.js')(sequelize, Sequelize);
+
 
 
 // Relationships
