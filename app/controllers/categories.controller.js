@@ -54,9 +54,7 @@ exports.create = async (req, res) => {
        
         categoryCreated= await Category.create(category);
         log(chalk.bold.black.bgGreen("SE CREO LA CATEGORIA DE MANERA EXITOSA"));
-        res.status(200).json({
-            message: "CATEGORY CREATED",
-            category: categoryCreated,
+        res.status(200).json({ categoryCreated,
 
         });
     }catch(error){
@@ -80,9 +78,7 @@ exports.retrieveAllCategories = async (req, res) => {
 
     try{
         categories= await Category.findAll();
-        res.status(200).json({
-            message: "THIS ARE THE CATEGORIES",
-            categories: categories
+        res.status(200).json({ categories
         });
 
     }
