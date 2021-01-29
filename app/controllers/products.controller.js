@@ -49,13 +49,13 @@ exports.create = async (req, res) => {
 
     try{
         // Building Client object from upoading request's body
-        product.name = req.body.address;
-        product.price = req.body.email;
-        product.category = req.body.name;
-        product.paymentInfo = req.body.password;
-        product.deliveryInfo=req.body.phone;
+        product.name = req.body.name;
+        product.price = req.body.price;
+        product.category = req.body.category;
+        product.paymentInfo = req.body.paymentInfo;
+        product.deliveryInfo=req.body.deliveryInfo;
         product.userEmail= req.user.email;
-
+        product.description=req.bodydescription;
         productCreated= await Product.create(product);
         log(chalk.bold.black.bgGreen("SE CREO EL USUARIO DE MANERA EXITOSA"));
         res.status(200).json({
@@ -69,6 +69,7 @@ exports.create = async (req, res) => {
             error: error.message
         });
         log(chalk.bold.bgRed("NO SE PUDO CREAR EL PRODUCTO"));
+        console.log("ERROR",error)
     }
 }
 

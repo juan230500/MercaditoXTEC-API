@@ -12,15 +12,18 @@ module.exports = (sequelize, Sequelize) => {
 	  },
 	  price: {
 			type: Sequelize.STRING
-  	},
+	  },
+	  description: {
+		type: Sequelize.STRING
+  },
 	  category: {
 			type: Sequelize.STRING
 	  },
 	  paymentInfo: {
-			type: Sequelize.INTEGER
+			type: Sequelize.STRING
     },
     deliveryInfo: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
     },
     eval: {
         type: Sequelize.INTEGER,

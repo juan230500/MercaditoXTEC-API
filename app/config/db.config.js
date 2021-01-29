@@ -28,8 +28,9 @@ db.Customer = require('../models/customer.model.js')(sequelize, Sequelize);
 db.User = require('../models/user.model.js')(sequelize, Sequelize);
 db.Product = require('../models/product.model.js')(sequelize, Sequelize);
 
-db.User.hasMany(db.Product);
 
+// Relationships
+db.User.hasMany(db.Product);
 db.Product.belongsTo(db.User);
  
 module.exports = db;
