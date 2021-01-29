@@ -1,7 +1,4 @@
-/**
- * Copyright by https://loizenai.com
- * youtube loizenai
- */
+
 
 const express = require('express');
 const app = express();
@@ -20,6 +17,7 @@ let userRouter = require('./app/routers/user.router.js');
 let productRouter = require('./app/routers/product.router.js');
 let categoryRouter = require('./app/routers/category.router.js');
 let ServiceRouter = require('./app/routers/service.router.js');
+let TutorialRouter = require('./app/routers/tutorial.router.js');
 
 
 
@@ -37,6 +35,8 @@ app.use('/', userRouter);
 app.use("/",productRouter);
 app.use("/",categoryRouter);
 app.use("/",ServiceRouter);
+app.use("/",TutorialRouter);
+
 
 // Create a Server
 const server = app.listen(8080, function () {

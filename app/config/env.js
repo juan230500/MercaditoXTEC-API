@@ -1,7 +1,4 @@
-/**
- * Copyright by https://loizenai.com
- * youtube loizenai
- */
+
 
 const env = {
   database: 'testdb',

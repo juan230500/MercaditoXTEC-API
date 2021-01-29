@@ -1,7 +1,3 @@
-/**
- * Copyright by https://loizenai.com
- * youtube loizenai
- */
 
 const env = require('./env.js');
  
@@ -29,6 +25,8 @@ db.User = require('../models/user.model.js')(sequelize, Sequelize);
 db.Product = require('../models/product.model.js')(sequelize, Sequelize);
 db.Category = require('../models/category.model.js')(sequelize, Sequelize);
 db.Service = require('../models/service.model.js')(sequelize, Sequelize);
+db.Tutorial = require('../models/tutorial.model.js')(sequelize, Sequelize);
+
 
 
 
@@ -41,6 +39,10 @@ db.Product.belongsTo(db.User);
 // Relationship User -> Service
 db.User.hasMany(db.Service);
 db.Service.belongsTo(db.User);
+
+// Relationship User -> Tutorial
+db.User.hasMany(db.Tutorial);
+db.Tutorial.belongsTo(db.User);
 
 
 module.exports = db;
