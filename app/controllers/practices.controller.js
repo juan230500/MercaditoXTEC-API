@@ -128,7 +128,8 @@ exports.getPracticeById = async (req, res) => {
             curse: practice.curse,
             paymentInfo: practice.paymentInfo,
             price: practice.price,
-            topics: practice.topics
+            topics: practice.topics,
+            eval:practice.eval
         }
         console.log("EST ES LA PRACTICA", result)
         res.status(200).json(result);

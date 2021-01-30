@@ -68,7 +68,7 @@ exports.create = async (req, res) => {
 exports.listAllMarket = async (req, res) => {
     try {
         const files = await Practice.findAll({
-            attributes: ['id', 'name','curse','price','topics']
+            attributes: ['id', 'name','curse','price','topics','eval']
         });
         const services = await Service.findAll({});
         const products=await Product.findAll({});

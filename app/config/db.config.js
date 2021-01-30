@@ -27,6 +27,8 @@ db.Category = require('../models/category.model.js')(sequelize, Sequelize);
 db.Service = require('../models/service.model.js')(sequelize, Sequelize);
 db.Tutorial = require('../models/tutorial.model.js')(sequelize, Sequelize);
 db.Practice = require('../models/practice.model.js')(sequelize, Sequelize);
+db.Order = require('../models/order.model.js')(sequelize, Sequelize);
+
 
 db.files = require('../models/file.model.js')(sequelize, Sequelize);
 
@@ -51,6 +53,9 @@ db.Tutorial.belongsTo(db.User);
 // Relationship User -> Practica
 db.User.hasMany(db.Practice);
 db.Practice.belongsTo(db.User);
+
+
+
 
 
 module.exports = db;
