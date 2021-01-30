@@ -33,6 +33,8 @@ let OrderRouter = require('./app/routers/order.router.js');
 let ChatRouter = require('./app/routers/chat.router.js');
 let MessageRouter = require('./app/routers/message.router.js');
 let AdminRouter = require('./app/routers/admin.router.js');
+let BusinessRouter = require('./app/routers/business.router.js');
+
 
 
 
@@ -44,7 +46,7 @@ let AdminRouter = require('./app/routers/admin.router.js');
 
 const cors = require('cors')
 const corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: '*',
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
@@ -63,6 +65,8 @@ app.use("/",OrderRouter);
 app.use("/",ChatRouter);
 app.use("/",MessageRouter);
 app.use("/",AdminRouter);
+app.use("/",BusinessRouter);
+
 
 
 // SOCKET FOR CHAT IN REAL TIME
