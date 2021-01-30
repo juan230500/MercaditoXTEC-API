@@ -96,5 +96,21 @@ exports.retrieveAllJobs = async (req, res) => {
        
 }
 
+exports.getJobById = async (req, res) => {
+    // find all Customer information from 
+    
+    try{
+      let jobId = req.params.id;
+        const job= await Job.findByPk(jobId );
+        // console.log("EST ES EL PRODUCTO",product)
+        res.status(200).json(job);
+    }catch(e){
+      res.status(500).json({error:e});
+    }
+  }
+  
+
+
+
 
 

@@ -9,6 +9,8 @@ const job = require('../controllers/jobs.controller.js');
 router.post('/jobs', job.create);
 // router.post('/product/login',auth, user.login);
 router.get('/jobs', job.retrieveAllJobs);
+router.get('/jobs/:id', job.getJobById);
+
 // router.get('/product/:id',auth, user.getClientById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
