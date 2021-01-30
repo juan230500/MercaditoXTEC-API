@@ -10,6 +10,8 @@ const User = db.User;
 const Service=db.Service;
 const Product=db.Product;
 const Tutorial=db.Tutorial;
+const Job=db.Job;
+
 
 
 const auth = async (req) => {
@@ -73,10 +75,12 @@ exports.listAllMarket = async (req, res) => {
         const services = await Service.findAll({});
         const products=await Product.findAll({});
         const tutorials= await Tutorial.findAll({});
+        const jobs= await Job.findAll({});
         const fileInfo = [];
         const servicesInfo = [];
         const productsInfo = [];
         const tutorialsInfo=[];
+        const jobsInfo=[];
 
 
         for (let i = 0; i < files.length; i++) {
@@ -128,7 +132,19 @@ exports.listAllMarket = async (req, res) => {
                 type:"tutorial"
             })
         }
-        const market=[...fileInfo,...servicesInfo,...productsInfo,...tutorialsInfo];
+        for (let i = 0; i < jobs.length; i++) {
+            jobsInfo.push({
+                id:jobs[i].id,
+                name:jobs[i].name,
+                description: jobs[i].description,
+                requirements: jobs[i].requirements,
+                salary:jobs[i].salary,
+                position:jobs[i].position,
+                // position:tutorials[i].eval,
+                type:"job"
+            })
+        }
+        const market=[...fileInfo,...servicesInfo,...productsInfo,...tutorialsInfo,...jobsInfo];
         
         log(chalk.bold.black.bgGreen("SE PUDO CREAR EL MARKET"));
 
@@ -136,7 +152,7 @@ exports.listAllMarket = async (req, res) => {
 
     } catch (err) {
         log(chalk.bold.bgRed("NO SE PUDO LISTAR TODAS LAS PRACTICAS"));
-        console.log("ERROR", e)
+        console.log("ERROR", err)
         res.json({
             msg: 'Error',
             detail: err

@@ -32,6 +32,8 @@ db.Chat = require('../models/chat.model.js')(sequelize, Sequelize);
 db.Message = require('../models/message.model.js')(sequelize, Sequelize);
 db.Admin = require('../models/admin.model.js')(sequelize, Sequelize);
 db.Business = require('../models/business.model.js')(sequelize, Sequelize);
+db.Job = require('../models/job.model.js')(sequelize, Sequelize);
+
 
 
 

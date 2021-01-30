@@ -34,6 +34,8 @@ let ChatRouter = require('./app/routers/chat.router.js');
 let MessageRouter = require('./app/routers/message.router.js');
 let AdminRouter = require('./app/routers/admin.router.js');
 let BusinessRouter = require('./app/routers/business.router.js');
+let JobsRouter = require('./app/routers/job.router.js');
+
 
 
 
@@ -66,6 +68,9 @@ app.use("/",ChatRouter);
 app.use("/",MessageRouter);
 app.use("/",AdminRouter);
 app.use("/",BusinessRouter);
+
+app.use("/",JobsRouter);
+
 
 
 

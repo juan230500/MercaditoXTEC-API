@@ -168,6 +168,35 @@ exports.updateById = async (req, res) => {
 
 
 
+// exports.getById = async (req, res) => {
+//     try{
+//         let businessId = req.params.id;
+//         let business = await Business.findByPk(businessId);
+
+    
+//         if(!business){
+//             // return a response to client
+//             res.status(404).json({
+//                 message: "Not Found  a Business with id = " + businessId,
+//                 error: "404"
+//             });
+//         } else {
+//             res.status(200).json({
+//                 message: "THIS IS  successfully a BUSINESS with id = " + req.params.id,
+//                 business: result,
+//             });
+//         }
+//     } catch(error){
+//         res.status(500).json({
+//             message: "Error -> Can not update a BUSINESS with id = " + req.params.id,
+//             error: error.message
+//         });
+//     }
+// }
+
+
+
+
 
 
 // exports.retrieveAllClients = (req, res) => {
