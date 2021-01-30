@@ -30,6 +30,7 @@ db.Practice = require('../models/practice.model.js')(sequelize, Sequelize);
 db.Order = require('../models/order.model.js')(sequelize, Sequelize);
 db.Chat = require('../models/chat.model.js')(sequelize, Sequelize);
 db.Message = require('../models/message.model.js')(sequelize, Sequelize);
+db.Admin = require('../models/admin.model.js')(sequelize, Sequelize);
 
 
 

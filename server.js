@@ -32,6 +32,8 @@ let MarketRouter = require('./app/routers/market.router.js');
 let OrderRouter = require('./app/routers/order.router.js');
 let ChatRouter = require('./app/routers/chat.router.js');
 let MessageRouter = require('./app/routers/message.router.js');
+let AdminRouter = require('./app/routers/admin.router.js');
+
 
 
 
@@ -60,6 +62,8 @@ app.use("/",MarketRouter);
 app.use("/",OrderRouter);
 app.use("/",ChatRouter);
 app.use("/",MessageRouter);
+app.use("/",AdminRouter);
+
 
 // SOCKET FOR CHAT IN REAL TIME
 
@@ -80,12 +84,13 @@ const server = app.listen(3000, function () {
 const io = require("socket.io")(server);
 
 
-// io.on("connection", (socket) => {
-//   log(chalk.bold.black.bgYellow("NEW USER CONNECTED TO SOCKET"));
-//   socket.on("message", (data) => {
+io.on("connection", (socket) => {
+  log(chalk.bold.black.bgYellow("NEW USER CONNECTED TO SOCKET"));
+  socket.on("message", (data) => {
+    console.log("CHAT ID",data.chatId)
    
     
-//     io.emit("chat"+data.id,data);
-//     message.sendMessage(data);
-//   });
-// });
+    io.emit("chat"+data.id,data);
+    message.sendMessage(data);
+  });
+});

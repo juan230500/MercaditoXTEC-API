@@ -145,3 +145,35 @@ exports.listAllMarket = async (req, res) => {
 
 
 }
+
+exports.status = async (req, res) => {
+    try {
+        log(chalk.bold.black.bgGreen("SE ENVIARON LAS ESTADISTICAS"));
+        res.status(200).json({
+            labels: ["January", "February", "March", "April", "May", "June"],
+            datasets: [
+              {
+                data: [
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ],
+              },
+            ],
+
+        });
+    } catch (e) {
+
+        res.status(500).json({
+            message: "Fail!",
+            error: e.message
+        });
+        log(chalk.bold.bgRed("NO SE PUDO CREAR LA PRACTICA"));
+        console.log("ERROR", e)
+
+    }
+
+}

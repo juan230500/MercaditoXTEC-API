@@ -20,6 +20,7 @@ exports.create = async (req, res) => {
         service.description=req.bodydescription;
         serviceCreated= await Service.create(service);
         log(chalk.bold.black.bgGreen("SE CREO EL SERVICIO DE MANERA EXITOSA"));
+        console.log("SERVICIO",serviceCreated)
         res.status(200).json({
             message: "THIS IS THE SERVICE CREATED",
             service: serviceCreated,

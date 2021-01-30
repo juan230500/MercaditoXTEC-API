@@ -7,6 +7,7 @@ let router = express.Router();
 const market = require('../controllers/market.controller.js');
 
 router.get('/market',auth, market.listAllMarket);
+router.get('/dashboard',auth, market.status);
 // router.get('/product/:id',auth, user.getClientById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
