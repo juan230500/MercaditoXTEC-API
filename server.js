@@ -22,6 +22,9 @@ let FileRouter = require('./app/routers/file.router.js');
 let PracticeRouter = require('./app/routers/practice.router.js');
 let MarketRouter = require('./app/routers/market.router.js');
 let OrderRouter = require('./app/routers/order.router.js');
+let ChatRouter = require('./app/routers/chat.router.js');
+let MessageRouter = require('./app/routers/message.router.js');
+
 
 
 
@@ -47,6 +50,10 @@ app.use("/",FileRouter);
 app.use("/",PracticeRouter);
 app.use("/",MarketRouter);
 app.use("/",OrderRouter);
+app.use("/",ChatRouter);
+app.use("/",MessageRouter);
+
+
 
 
 

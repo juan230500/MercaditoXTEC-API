@@ -28,6 +28,9 @@ db.Service = require('../models/service.model.js')(sequelize, Sequelize);
 db.Tutorial = require('../models/tutorial.model.js')(sequelize, Sequelize);
 db.Practice = require('../models/practice.model.js')(sequelize, Sequelize);
 db.Order = require('../models/order.model.js')(sequelize, Sequelize);
+db.Chat = require('../models/chat.model.js')(sequelize, Sequelize);
+db.Message = require('../models/message.model.js')(sequelize, Sequelize);
+
 
 
 db.files = require('../models/file.model.js')(sequelize, Sequelize);
@@ -55,7 +58,13 @@ db.User.hasMany(db.Practice);
 db.Practice.belongsTo(db.User);
 
 
+// Relationship Order -> Chat
+db.Order.hasOne(db.Chat);
+db.Chat.belongsTo(db.Order);
 
+// Relationship Chat -> Message
+db.Chat.hasMany(db.Message);
+db.Message.belongsTo(db.Chat);
 
 
 module.exports = db;

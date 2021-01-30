@@ -4,17 +4,13 @@ const auth= require("../middleware/auth.js")
 let express = require('express');
 let router = express.Router();
  
-const order = require('../controllers/orders.controller.js');
+const message = require('../controllers/messages.controller.js');
 
-router.post('/order',auth, order.create);
-router.put('/order/:id',auth, order.updateById);
-router.get('/order/message/:id',auth, order.getMessages);
-
+router.post('/message',auth, message.create);
+router.get('/message/:id',auth, message.getAllMessages);
 // router.post('/product/login',auth, user.login);
-// router.get('/product',auth, product.retrieveProducts);
-router.get('/stock',auth, order.getStock);
-router.get('/purchase',auth, order.getPurchases);
-
+// router.get('/categories',auth, category.retrieveAllCategories);
+// router.get('/product/:id',auth, user.getClientById);
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
 // router.get('/api/customers/pagefiltersort', customers.pagingfilteringsorting);
