@@ -72,3 +72,47 @@ exports.getTutorialById = async (req, res) => {
   }
 
 
+// exports.updateById = async (req, res) => {
+//     try{
+//         let tutorialId = req.params.id;
+//         let product = await Product.findByPk(productId);
+    
+//         if(!product){
+//             // return a response to client
+//             res.status(404).json({
+//                 message: "Not Found for updating a Product with id = " + productId,
+//                 customer: "",
+//                 error: "404"
+//             });
+//         } else {    
+//             // // update new change to database
+//             // let updatedObject = {
+//             //     firstname: req.body.firstname,
+//             //     lastname: req.body.lastname,
+//             //     address: req.body.address,
+//             //     age: req.body.age
+//             // }
+//             let result = await Product.update(req.body, {returning: true, where: {id: productId}});
+            
+//             // return the response to client
+//             if(!result) {
+//                 res.status(500).json({
+//                     message: "Error -> Can not update a PRODUCT with id = " + req.params.id,
+//                     error: "Can NOT Updated",
+//                 });
+//             }
+
+//             res.status(200).json({
+//                 message: "Update successfully a Product with id = " + productId,
+//                 product: result,
+//             });
+//         }
+//     } catch(error){
+//         res.status(500).json({
+//             message: "Error -> Can not update a Product with id = " + req.params.id,
+//             error: error.message
+//         });
+//     }
+// }
+
+

@@ -24,6 +24,10 @@ module.exports = (sequelize, Sequelize) => {
       phone: {
         type: Sequelize.STRING
     },
+    points: {
+      type: Sequelize.INTEGER,
+      default: '0'
+    },
     tokens: {
         type: Sequelize.ARRAY(Sequelize.TEXT)
         

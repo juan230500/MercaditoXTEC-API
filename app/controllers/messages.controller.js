@@ -52,7 +52,7 @@ exports.sendMessage = async (req) => {
         // Building Client object from upoading request's body
         message.createdBy = req.createdBy;
         message.value = req.value;
-        message.chatId= req.chatId;
+        message.chatId= req.id;
         messageCreated= await Message.create(message);
         log(chalk.bold.black.bgGreen(message.createdBy+"ENVIO UN  MENSAJE"))
         // res.status(200).json(messageCreated);

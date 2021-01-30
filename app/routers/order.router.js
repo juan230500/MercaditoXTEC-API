@@ -15,6 +15,8 @@ router.get('/order/message/:id',auth, order.getMessages);
 router.get('/stock',auth, order.getStock);
 router.get('/purchase',auth, order.getPurchases);
 
+router.get('/order/:id',auth, order.getOrderById);
+
 // router.get('/api/customers/filteringbyage', customers.filteringByAge);
 // router.get('/api/customers/pagination', customers.pagination);
 // router.get('/api/customers/pagefiltersort', customers.pagingfilteringsorting);

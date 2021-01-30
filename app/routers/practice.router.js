@@ -12,5 +12,7 @@ router.post('/practice/:id', upload.single("file"), practice.updateById);
 router.get('/practice', practice.listAllPractices);
 router.get('/practice/:id', practice.getPracticeById);
 router.get('/practice/dowload/:id', practice.downloadFile);
+router.get('/practice/answer/:id', practice.answerFile);
+
 
 module.exports = router;

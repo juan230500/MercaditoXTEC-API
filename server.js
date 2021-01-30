@@ -2,6 +2,14 @@
 
 const express = require('express');
 const app = express();
+const http = require("http").Server(app);
+const chalk = require('chalk');
+const log = console.log;
+
+// const message = require('../controllers/messages.controller.js');
+const message = require('./app/controllers/messages.controller.js');
+
+
 
 var bodyParser = require('body-parser');
  
@@ -53,6 +61,7 @@ app.use("/",OrderRouter);
 app.use("/",ChatRouter);
 app.use("/",MessageRouter);
 
+// SOCKET FOR CHAT IN REAL TIME
 
 
 
@@ -67,3 +76,16 @@ const server = app.listen(3000, function () {
  
   console.log("App listening at http://%s:%s", host, port); 
 })
+
+const io = require("socket.io")(server);
+
+
+// io.on("connection", (socket) => {
+//   log(chalk.bold.black.bgYellow("NEW USER CONNECTED TO SOCKET"));
+//   socket.on("message", (data) => {
+   
+    
+//     io.emit("chat"+data.id,data);
+//     message.sendMessage(data);
+//   });
+// });

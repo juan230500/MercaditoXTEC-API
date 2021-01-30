@@ -116,6 +116,27 @@ exports.downloadFile = (req, res) => {
 }
 
 
+exports.answerFile = (req, res) => {
+    Practice.findByPk(req.params.id).then(file => {
+        var fileContents = Buffer.from(file.dataSolution, "base64");
+        var readStream = new stream.PassThrough();
+        readStream.end(fileContents);
+
+        res.set('Content-disposition', 'attachment; filename=' + file.nameSolution);
+        res.set('Content-Type', file.typeSolution);
+
+        readStream.pipe(res);
+    }).catch(err => {
+        console.log(err);
+        res.json({
+            msg: 'Error',
+            detail: err
+        });
+    });
+}
+
+
+
 
 exports.getPracticeById = async (req, res) => {
     // find all Customer information from 
@@ -129,7 +150,8 @@ exports.getPracticeById = async (req, res) => {
             paymentInfo: practice.paymentInfo,
             price: practice.price,
             topics: practice.topics,
-            eval:practice.eval
+            eval:practice.eval,
+            user:practice.userEmail
         }
         console.log("EST ES LA PRACTICA", result)
         res.status(200).json(result);

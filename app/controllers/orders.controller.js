@@ -37,7 +37,8 @@ exports.create = async (req, res) => {
         res.status(200).json({
             message: "SE CREO CORRECTAMENTE LA ORDEN Y EL CHAT",
             order: orderCreated.dataValues,
-            chat:chatCreated.dataValues
+            chat:chatCreated.dataValues,
+            
 
         });
     }catch(error){
@@ -93,7 +94,21 @@ exports.getMessages = async (req, res) => {
         const chat=await Chat.findOne({where: { orderId: orderId }})
         const messages=await Message.findAll({where: { chatId: chat.id }})
         log(chalk.bold.black.bgGreen("SE LISTO CORRECTAMENTE LOS MENSAJES DE LA ORDEN:"+orderId));
-        res.status(200).json(messages);
+        res.status(200).json({messages:messages,user:req.user,chat:chat}
+            );
+    }catch(e){
+      res.status(500).json({error:e});
+    }
+  }
+
+  exports.getOrderById = async(req, res) => {
+    // find all Customer information from 
+    
+    try{
+        let orderId = req.params.id;
+        const order= await Order.findByPk(orderId);
+        console.log(chalk.black.bgGreen("SE LOGRO MOSTAR LA ORDEN"))
+        res.status(200).json(order);
     }catch(e){
       res.status(500).json({error:e});
     }
@@ -125,7 +140,7 @@ exports.updateById = async (req, res) => {
 
             res.status(200).json({
                 message: "Update successfully the order with id = " + orderId,
-                order: order,
+                order: result,
             });
         }
     } catch(error){
